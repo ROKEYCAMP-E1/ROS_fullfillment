@@ -3,12 +3,15 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.uic import loadUi  # .ui 파일 로드를 위한 모듈
 from PyQt5.QtCore import QTimer
 from datetime import datetime
+from PyQt5.QtCore import pyqtSignal
 
 class MainApp(QMainWindow):
+    mypage_load = pyqtSignal()
+    
     def __init__(self):
         super().__init__()
 
-        loadUi("workspace.ui", self)
+        loadUi("UI/workspace.ui", self)
 
         self.control_window=ControlWindow()
 
@@ -24,8 +27,11 @@ class MainApp(QMainWindow):
         self.textBrowser_2.setText("")  # 텍스트 초기화
         self.textBrowser_3.setText("경과 시간:  초")
 
+        self.mypage_button.clicked.connect(self.emit_mypage_load)
 
-        
+
+    def emit_mypage_load(self):
+        self.mypage_load.emit()
 
     def update_selected_job(self):
         """현재 ComboBox에서 선택된 작업을 업데이트"""
@@ -56,7 +62,7 @@ class MainApp(QMainWindow):
 class ControlWindow(QMainWindow):
     def __init__(self,parent=None):
         super(ControlWindow,self).__init__(parent)
-        loadUi("control.ui", self)
+        loadUi("UI/control.ui", self)
 
 
 
