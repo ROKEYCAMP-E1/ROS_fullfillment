@@ -1,3 +1,0 @@
-[console_scripts]
-UI_node = ui_node:main
-
