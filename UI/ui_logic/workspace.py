@@ -7,18 +7,18 @@ from datetime import datetime
 from PyQt5.QtCore import pyqtSignal
 from utils.send_email import send_email
 from utils.auth import load_user_data
-from ui_logic.TopView_Camera_video import CameraHandler
+from PyQt5.QtGui import QPixmap  # QPixmap 임포트 추가
 
     
 class WorkspaceWindow(QMainWindow):
     mypage_load = pyqtSignal()
     control_load = pyqtSignal()
 
-    def __init__(self):
+    def __init__(self, camera_handler):
         super().__init__()
         loadUi("UI/ui/workspace.ui", self)
 
-        self.control_window = ControlWindow()
+        self.control_window = ControlWindow(camera_handler)
         self.control_window.send_text.connect(self.update_text_browser)
 
         self.jobbox.activated.connect(self.update_selected_job)  
@@ -37,10 +37,13 @@ class WorkspaceWindow(QMainWindow):
         self.control.clicked.connect(self.emit_control_load)
 
         # TopView Camera 연결
-        self.camera_handler = CameraHandler(self.worldcamera)
-        self.camera_handler.start_camera()  # 즉시 카메라 실행
+        self.camera_handler = camera_handler
+        self.camera_handler.frame_ready.connect(self.update_frame)  # 프레임 연결
 
         self.current_job = None
+
+    def update_frame(self, frame):
+        self.worldcamera.setPixmap(QPixmap.fromImage(frame))
 
 
     def emit_mypage_load(self):
@@ -76,23 +79,21 @@ class WorkspaceWindow(QMainWindow):
         """ControlWindow에서 전달받은 텍스트를 textBrowser에 출력"""
         self.textBrowser.append(text)  # 텍스트 브라우저에 텍스트 추가
 
-    def closeEvent(self, event):
-        """창 닫기 이벤트 처리"""
-        self.camera_handler.close_camera()  # 카메라 정리
-        event.accept()
 
 class ControlWindow(QMainWindow):
     send_text = pyqtSignal(str)
+    workspace_load = pyqtSignal()
     _instance = None # Singleton 인스턴스 저장
     _initialized = False  # 초기화 상태 플래그
 
-    def __new__(cls, *args, **kwargs):
+    def __new__(cls, camera_handler=None, *args, **kwargs):
         if not cls._instance:
             cls._instance = super(ControlWindow, cls).__new__(cls, *args, **kwargs)
+    
         return cls._instance
 
 
-    def __init__(self,parent=None):
+    def __init__(self, camera_handler ,parent=None):
         if not self._initialized:
             super().__init__(parent)
             loadUi("UI/ui/control_window.ui", self)
@@ -104,9 +105,19 @@ class ControlWindow(QMainWindow):
             self.resume.clicked.connect(self.resume_robot)
             self.run_con.clicked.connect(self.run_conveyor)
             self.stop_con.clicked.connect(self.stop_conveyor)
-            self.gohome.clicked.connect(self.close)
+            self.gohome.clicked.connect(self.emit_workspace_load)
+
+            # 카메라 연결
+            self.camera_handler = camera_handler
+            self.camera_handler.frame_ready.connect(self.update_frame)  # 프레임 연결
 
             self._initialized = True  # 초기화 완료 플래그 설정
+
+    def update_frame(self, frame):
+        self.worldcamera.setPixmap(QPixmap.fromImage(frame))
+        
+    def emit_workspace_load(self):
+        self.workspace_load.emit()
 
     def play_robot(self):
         text_to_send = "Robot play"
@@ -138,5 +149,6 @@ class ControlWindow(QMainWindow):
             send_email(receiver_email, subject, message)
         else:
             print("메시지가 비어 있습니다.")
+
 
 
