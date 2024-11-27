@@ -1,0 +1,6 @@
+터미널1: 카메라 켜기
+
+cd fullfillment_ws
+
+ros2 run usb_cam usb_cam_node_exe --ros-args --params-file ../cam_ws/src/usb_cam/config/params_720p.yaml
+

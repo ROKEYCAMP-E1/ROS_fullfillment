@@ -1,0 +1,3 @@
+[console_scripts]
+image_subscriber = image_sub.image_subscriber.image_subscriber:main
+

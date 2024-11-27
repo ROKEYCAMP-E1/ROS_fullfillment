@@ -1,0 +1,23 @@
+usb_cam 키는 코드:
+(사전에 파라미터파일에 경로 설정해야함. 자세한 사항은..)
+
+터미널1
+cd fullfillment_ws
+
+ros2 run usb_cam usb_cam_node_exe --ros-args --params-file ../cam_ws/src/usb_cam/config/params_720p.yaml
+
+
+터미널2
+cd fullfillment_ws
+cd Gripper_Cemera_ws
+
+source install/setup.bash 
+
+ros2 run image_sub image_subscriber
+
+터미널3
+cd ~/Gripper_Cemera_ws/src/image_sub/image_sub/image_subscriber
+
+python3 show_image.py 
+
+
