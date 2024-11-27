@@ -7,7 +7,7 @@ from datetime import datetime
 from PyQt5.QtCore import pyqtSignal
 from utils.send_email import send_email
 from utils.auth import load_user_data
-
+from ui_logic.TopView_Camera_video import CameraHandler
 
     
 class WorkspaceWindow(QMainWindow):
@@ -35,6 +35,10 @@ class WorkspaceWindow(QMainWindow):
 
         self.mypage_button.clicked.connect(self.emit_mypage_load) 
         self.control.clicked.connect(self.emit_control_load)
+
+        # TopView Camera 연결
+        self.camera_handler = CameraHandler(self.worldcamera)
+        self.camera_handler.start_camera()  # 즉시 카메라 실행
 
         self.current_job = None
 
@@ -72,7 +76,10 @@ class WorkspaceWindow(QMainWindow):
         """ControlWindow에서 전달받은 텍스트를 textBrowser에 출력"""
         self.textBrowser.append(text)  # 텍스트 브라우저에 텍스트 추가
 
-
+    def closeEvent(self, event):
+        """창 닫기 이벤트 처리"""
+        self.camera_handler.close_camera()  # 카메라 정리
+        event.accept()
 
 class ControlWindow(QMainWindow):
     send_text = pyqtSignal(str)
