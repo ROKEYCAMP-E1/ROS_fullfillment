@@ -1,0 +1,284 @@
+[0.227s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.228s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=8, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x7f0a05cb7f10>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7f0a05cb7880>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7f0a05cb7880>>, mixin_verb=('build',))
+[0.570s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.570s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.570s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.570s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.570s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.570s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.570s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/rokey/Fullfillment_ws'
+[0.570s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.570s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.570s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.570s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.570s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.571s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.571s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.571s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.571s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.584s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.584s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.584s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.584s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.584s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.584s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera) by extensions ['ignore', 'ignore_ament_install']
+[0.584s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera) by extension 'ignore'
+[0.584s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera) by extension 'ignore_ament_install'
+[0.584s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera) by extensions ['colcon_pkg']
+[0.584s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera) by extension 'colcon_pkg'
+[0.585s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera) by extensions ['colcon_meta']
+[0.585s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera) by extension 'colcon_meta'
+[0.585s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera) by extensions ['ros']
+[0.585s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera) by extension 'ros'
+[0.585s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera) by extensions ['cmake', 'python']
+[0.585s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera) by extension 'cmake'
+[0.585s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera) by extension 'python'
+[0.585s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera) by extensions ['python_setup_py']
+[0.585s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera) by extension 'python_setup_py'
+[0.585s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws) by extensions ['ignore', 'ignore_ament_install']
+[0.585s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws) by extension 'ignore'
+[0.585s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws) by extension 'ignore_ament_install'
+[0.585s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws) by extensions ['colcon_pkg']
+[0.585s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws) by extension 'colcon_pkg'
+[0.585s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws) by extensions ['colcon_meta']
+[0.585s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws) by extension 'colcon_meta'
+[0.585s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws) by extensions ['ros']
+[0.585s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws) by extension 'ros'
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws) by extensions ['cmake', 'python']
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws) by extension 'cmake'
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws) by extension 'python'
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws) by extensions ['python_setup_py']
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws) by extension 'python_setup_py'
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/build) by extensions ['ignore', 'ignore_ament_install']
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/build) by extension 'ignore'
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/build) ignored
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/install) by extensions ['ignore', 'ignore_ament_install']
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/install) by extension 'ignore'
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/install) ignored
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/log) by extensions ['ignore', 'ignore_ament_install']
+[0.586s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/log) by extension 'ignore'
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/log) ignored
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src) by extensions ['ignore', 'ignore_ament_install']
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src) by extension 'ignore'
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src) by extension 'ignore_ament_install'
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src) by extensions ['colcon_pkg']
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src) by extension 'colcon_pkg'
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src) by extensions ['colcon_meta']
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src) by extension 'colcon_meta'
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src) by extensions ['ros']
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src) by extension 'ros'
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src) by extensions ['cmake', 'python']
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src) by extension 'cmake'
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src) by extension 'python'
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src) by extensions ['python_setup_py']
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src) by extension 'python_setup_py'
+[0.587s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src/image_sub) by extensions ['ignore', 'ignore_ament_install']
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src/image_sub) by extension 'ignore'
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src/image_sub) by extension 'ignore_ament_install'
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src/image_sub) by extensions ['colcon_pkg']
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src/image_sub) by extension 'colcon_pkg'
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src/image_sub) by extensions ['colcon_meta']
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src/image_sub) by extension 'colcon_meta'
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src/image_sub) by extensions ['ros']
+[0.588s] Level 1:colcon.colcon_core.package_identification:_identify(Gripper_Camera/Gripper_Camera_ws/src/image_sub) by extension 'ros'
+[0.593s] DEBUG:colcon.colcon_core.package_identification:Package 'Gripper_Camera/Gripper_Camera_ws/src/image_sub' with type 'ros.ament_python' and name 'image_sub'
+[0.594s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.594s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.594s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.594s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws) by extensions ['ignore', 'ignore_ament_install']
+[0.594s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws) by extension 'ignore'
+[0.594s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws) by extension 'ignore_ament_install'
+[0.594s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws) by extensions ['colcon_pkg']
+[0.594s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws) by extension 'colcon_pkg'
+[0.594s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws) by extensions ['colcon_meta']
+[0.594s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws) by extension 'colcon_meta'
+[0.594s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws) by extensions ['ros']
+[0.594s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws) by extension 'ros'
+[0.594s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws) by extensions ['cmake', 'python']
+[0.594s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws) by extension 'cmake'
+[0.595s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws) by extension 'python'
+[0.595s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws) by extensions ['python_setup_py']
+[0.595s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws) by extension 'python_setup_py'
+[0.595s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src) by extensions ['ignore', 'ignore_ament_install']
+[0.595s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src) by extension 'ignore'
+[0.595s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src) by extension 'ignore_ament_install'
+[0.595s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src) by extensions ['colcon_pkg']
+[0.595s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src) by extension 'colcon_pkg'
+[0.595s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src) by extensions ['colcon_meta']
+[0.595s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src) by extension 'colcon_meta'
+[0.595s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src) by extensions ['ros']
+[0.595s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src) by extension 'ros'
+[0.595s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src) by extensions ['cmake', 'python']
+[0.595s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src) by extension 'cmake'
+[0.595s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src) by extension 'python'
+[0.595s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src) by extensions ['python_setup_py']
+[0.595s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src) by extension 'python_setup_py'
+[0.596s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam) by extensions ['ignore', 'ignore_ament_install']
+[0.596s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam) by extension 'ignore'
+[0.596s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam) by extension 'ignore_ament_install'
+[0.596s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam) by extensions ['colcon_pkg']
+[0.596s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam) by extension 'colcon_pkg'
+[0.596s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam) by extensions ['colcon_meta']
+[0.596s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam) by extension 'colcon_meta'
+[0.596s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam) by extensions ['ros']
+[0.596s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam) by extension 'ros'
+[0.596s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam) by extensions ['cmake', 'python']
+[0.596s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam) by extension 'cmake'
+[0.596s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam) by extension 'python'
+[0.596s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam) by extensions ['python_setup_py']
+[0.596s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam) by extension 'python_setup_py'
+[0.596s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam/config) by extensions ['ignore', 'ignore_ament_install']
+[0.597s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam/config) by extension 'ignore'
+[0.597s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam/config) by extension 'ignore_ament_install'
+[0.597s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam/config) by extensions ['colcon_pkg']
+[0.597s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam/config) by extension 'colcon_pkg'
+[0.597s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam/config) by extensions ['colcon_meta']
+[0.597s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam/config) by extension 'colcon_meta'
+[0.597s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam/config) by extensions ['ros']
+[0.597s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam/config) by extension 'ros'
+[0.597s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam/config) by extensions ['cmake', 'python']
+[0.597s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam/config) by extension 'cmake'
+[0.597s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam/config) by extension 'python'
+[0.597s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam/config) by extensions ['python_setup_py']
+[0.597s] Level 1:colcon.colcon_core.package_identification:_identify(cam_ws/src/usb_cam/config) by extension 'python_setup_py'
+[0.597s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.597s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.597s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.598s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.598s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.598s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.598s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.598s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.598s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.598s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.598s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.598s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.598s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.598s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.598s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.598s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.598s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.598s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.598s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.598s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.599s] Level 1:colcon.colcon_core.package_identification:_identify(src/UI) by extensions ['ignore', 'ignore_ament_install']
+[0.599s] Level 1:colcon.colcon_core.package_identification:_identify(src/UI) by extension 'ignore'
+[0.599s] Level 1:colcon.colcon_core.package_identification:_identify(src/UI) by extension 'ignore_ament_install'
+[0.599s] Level 1:colcon.colcon_core.package_identification:_identify(src/UI) by extensions ['colcon_pkg']
+[0.599s] Level 1:colcon.colcon_core.package_identification:_identify(src/UI) by extension 'colcon_pkg'
+[0.599s] Level 1:colcon.colcon_core.package_identification:_identify(src/UI) by extensions ['colcon_meta']
+[0.599s] Level 1:colcon.colcon_core.package_identification:_identify(src/UI) by extension 'colcon_meta'
+[0.599s] Level 1:colcon.colcon_core.package_identification:_identify(src/UI) by extensions ['ros']
+[0.599s] Level 1:colcon.colcon_core.package_identification:_identify(src/UI) by extension 'ros'
+[0.600s] DEBUG:colcon.colcon_core.package_identification:Package 'src/UI' with type 'ros.ament_python' and name 'UI'
+[0.600s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.600s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.600s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.600s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.600s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.626s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.626s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.632s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 5 installed packages in /home/rokey/turtlebot3_ws/install
+[0.634s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 452 installed packages in /opt/ros/humble
+[0.637s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.744s] Level 5:colcon.colcon_core.verb:set package 'UI' build argument 'cmake_args' from command line to 'None'
+[0.744s] Level 5:colcon.colcon_core.verb:set package 'UI' build argument 'cmake_target' from command line to 'None'
+[0.744s] Level 5:colcon.colcon_core.verb:set package 'UI' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.744s] Level 5:colcon.colcon_core.verb:set package 'UI' build argument 'cmake_clean_cache' from command line to 'False'
+[0.745s] Level 5:colcon.colcon_core.verb:set package 'UI' build argument 'cmake_clean_first' from command line to 'False'
+[0.745s] Level 5:colcon.colcon_core.verb:set package 'UI' build argument 'cmake_force_configure' from command line to 'False'
+[0.745s] Level 5:colcon.colcon_core.verb:set package 'UI' build argument 'ament_cmake_args' from command line to 'None'
+[0.745s] Level 5:colcon.colcon_core.verb:set package 'UI' build argument 'catkin_cmake_args' from command line to 'None'
+[0.745s] Level 5:colcon.colcon_core.verb:set package 'UI' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.745s] DEBUG:colcon.colcon_core.verb:Building package 'UI' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/rokey/Fullfillment_ws/build/UI', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/rokey/Fullfillment_ws/install/UI', 'merge_install': False, 'path': '/home/rokey/Fullfillment_ws/src/UI', 'symlink_install': False, 'test_result_base': None}
+[0.745s] Level 5:colcon.colcon_core.verb:set package 'image_sub' build argument 'cmake_args' from command line to 'None'
+[0.745s] Level 5:colcon.colcon_core.verb:set package 'image_sub' build argument 'cmake_target' from command line to 'None'
+[0.745s] Level 5:colcon.colcon_core.verb:set package 'image_sub' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.745s] Level 5:colcon.colcon_core.verb:set package 'image_sub' build argument 'cmake_clean_cache' from command line to 'False'
+[0.745s] Level 5:colcon.colcon_core.verb:set package 'image_sub' build argument 'cmake_clean_first' from command line to 'False'
+[0.745s] Level 5:colcon.colcon_core.verb:set package 'image_sub' build argument 'cmake_force_configure' from command line to 'False'
+[0.745s] Level 5:colcon.colcon_core.verb:set package 'image_sub' build argument 'ament_cmake_args' from command line to 'None'
+[0.745s] Level 5:colcon.colcon_core.verb:set package 'image_sub' build argument 'catkin_cmake_args' from command line to 'None'
+[0.745s] Level 5:colcon.colcon_core.verb:set package 'image_sub' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.745s] DEBUG:colcon.colcon_core.verb:Building package 'image_sub' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/rokey/Fullfillment_ws/build/image_sub', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/rokey/Fullfillment_ws/install/image_sub', 'merge_install': False, 'path': '/home/rokey/Fullfillment_ws/Gripper_Camera/Gripper_Camera_ws/src/image_sub', 'symlink_install': False, 'test_result_base': None}
+[0.746s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.747s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.747s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/rokey/Fullfillment_ws/src/UI' with build type 'ament_python'
+[0.748s] Level 1:colcon.colcon_core.shell:create_environment_hook('UI', 'ament_prefix_path')
+[0.751s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.751s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/rokey/Fullfillment_ws/install/UI/share/UI/hook/ament_prefix_path.ps1'
+[0.752s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/rokey/Fullfillment_ws/install/UI/share/UI/hook/ament_prefix_path.dsv'
+[0.752s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/rokey/Fullfillment_ws/install/UI/share/UI/hook/ament_prefix_path.sh'
+[0.753s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.754s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.757s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/rokey/Fullfillment_ws/Gripper_Camera/Gripper_Camera_ws/src/image_sub' with build type 'ament_python'
+[0.758s] Level 1:colcon.colcon_core.shell:create_environment_hook('image_sub', 'ament_prefix_path')
+[0.758s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/rokey/Fullfillment_ws/install/image_sub/share/image_sub/hook/ament_prefix_path.ps1'
+[0.759s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/rokey/Fullfillment_ws/install/image_sub/share/image_sub/hook/ament_prefix_path.dsv'
+[0.759s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/rokey/Fullfillment_ws/install/image_sub/share/image_sub/hook/ament_prefix_path.sh'
+[0.760s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.760s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.153s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/rokey/Fullfillment_ws/src/UI'
+[1.153s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.154s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.520s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/rokey/Fullfillment_ws/Gripper_Camera/Gripper_Camera_ws/src/image_sub'
+[1.521s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.521s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.189s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/rokey/Fullfillment_ws/Gripper_Camera/Gripper_Camera_ws/src/image_sub': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/rokey/Fullfillment_ws/build/image_sub/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/rokey/Fullfillment_ws/install/image_sub/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../../../build/image_sub build --build-base /home/rokey/Fullfillment_ws/build/image_sub/build install --record /home/rokey/Fullfillment_ws/build/image_sub/install.log --single-version-externally-managed install_data
+[2.197s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/rokey/Fullfillment_ws/src/UI': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/rokey/Fullfillment_ws/build/UI/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/rokey/Fullfillment_ws/install/UI/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/UI build --build-base /home/rokey/Fullfillment_ws/build/UI/build install --record /home/rokey/Fullfillment_ws/build/UI/install.log --single-version-externally-managed install_data
+[2.684s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/rokey/Fullfillment_ws/Gripper_Camera/Gripper_Camera_ws/src/image_sub' returned '0': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/rokey/Fullfillment_ws/build/image_sub/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/rokey/Fullfillment_ws/install/image_sub/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../../../build/image_sub build --build-base /home/rokey/Fullfillment_ws/build/image_sub/build install --record /home/rokey/Fullfillment_ws/build/image_sub/install.log --single-version-externally-managed install_data
+[2.690s] Level 1:colcon.colcon_core.environment:checking '/home/rokey/Fullfillment_ws/install/image_sub' for CMake module files
+[2.691s] Level 1:colcon.colcon_core.environment:checking '/home/rokey/Fullfillment_ws/install/image_sub' for CMake config files
+[2.692s] Level 1:colcon.colcon_core.environment:checking '/home/rokey/Fullfillment_ws/install/image_sub/lib'
+[2.692s] Level 1:colcon.colcon_core.environment:checking '/home/rokey/Fullfillment_ws/install/image_sub/bin'
+[2.692s] Level 1:colcon.colcon_core.environment:checking '/home/rokey/Fullfillment_ws/install/image_sub/lib/pkgconfig/image_sub.pc'
+[2.693s] Level 1:colcon.colcon_core.environment:checking '/home/rokey/Fullfillment_ws/install/image_sub/lib/python3.10/site-packages'
+[2.693s] Level 1:colcon.colcon_core.shell:create_environment_hook('image_sub', 'pythonpath')
+[2.693s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/rokey/Fullfillment_ws/install/image_sub/share/image_sub/hook/pythonpath.ps1'
+[2.694s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/rokey/Fullfillment_ws/install/image_sub/share/image_sub/hook/pythonpath.dsv'
+[2.695s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/rokey/Fullfillment_ws/install/image_sub/share/image_sub/hook/pythonpath.sh'
+[2.695s] Level 1:colcon.colcon_core.environment:checking '/home/rokey/Fullfillment_ws/install/image_sub/bin'
+[2.696s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(image_sub)
+[2.696s] INFO:colcon.colcon_core.shell:Creating package script '/home/rokey/Fullfillment_ws/install/image_sub/share/image_sub/package.ps1'
+[2.698s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/rokey/Fullfillment_ws/install/image_sub/share/image_sub/package.dsv'
+[2.699s] INFO:colcon.colcon_core.shell:Creating package script '/home/rokey/Fullfillment_ws/install/image_sub/share/image_sub/package.sh'
+[2.701s] INFO:colcon.colcon_core.shell:Creating package script '/home/rokey/Fullfillment_ws/install/image_sub/share/image_sub/package.bash'
+[2.703s] INFO:colcon.colcon_core.shell:Creating package script '/home/rokey/Fullfillment_ws/install/image_sub/share/image_sub/package.zsh'
+[2.704s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/rokey/Fullfillment_ws/install/image_sub/share/colcon-core/packages/image_sub)
+[2.706s] Level 1:colcon.colcon_core.environment:checking '/home/rokey/Fullfillment_ws/install/UI' for CMake module files
+[2.707s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/rokey/Fullfillment_ws/src/UI' returned '0': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/rokey/Fullfillment_ws/build/UI/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/rokey/Fullfillment_ws/install/UI/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/UI build --build-base /home/rokey/Fullfillment_ws/build/UI/build install --record /home/rokey/Fullfillment_ws/build/UI/install.log --single-version-externally-managed install_data
+[2.708s] Level 1:colcon.colcon_core.environment:checking '/home/rokey/Fullfillment_ws/install/UI' for CMake config files
+[2.708s] Level 1:colcon.colcon_core.environment:checking '/home/rokey/Fullfillment_ws/install/UI/lib'
+[2.708s] Level 1:colcon.colcon_core.environment:checking '/home/rokey/Fullfillment_ws/install/UI/bin'
+[2.708s] Level 1:colcon.colcon_core.environment:checking '/home/rokey/Fullfillment_ws/install/UI/lib/pkgconfig/UI.pc'
+[2.709s] Level 1:colcon.colcon_core.environment:checking '/home/rokey/Fullfillment_ws/install/UI/lib/python3.10/site-packages'
+[2.709s] Level 1:colcon.colcon_core.shell:create_environment_hook('UI', 'pythonpath')
+[2.709s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/rokey/Fullfillment_ws/install/UI/share/UI/hook/pythonpath.ps1'
+[2.710s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/rokey/Fullfillment_ws/install/UI/share/UI/hook/pythonpath.dsv'
+[2.711s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/rokey/Fullfillment_ws/install/UI/share/UI/hook/pythonpath.sh'
+[2.712s] Level 1:colcon.colcon_core.environment:checking '/home/rokey/Fullfillment_ws/install/UI/bin'
+[2.712s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(UI)
+[2.713s] INFO:colcon.colcon_core.shell:Creating package script '/home/rokey/Fullfillment_ws/install/UI/share/UI/package.ps1'
+[2.714s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/rokey/Fullfillment_ws/install/UI/share/UI/package.dsv'
+[2.715s] INFO:colcon.colcon_core.shell:Creating package script '/home/rokey/Fullfillment_ws/install/UI/share/UI/package.sh'
+[2.716s] INFO:colcon.colcon_core.shell:Creating package script '/home/rokey/Fullfillment_ws/install/UI/share/UI/package.bash'
+[2.717s] INFO:colcon.colcon_core.shell:Creating package script '/home/rokey/Fullfillment_ws/install/UI/share/UI/package.zsh'
+[2.717s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/rokey/Fullfillment_ws/install/UI/share/colcon-core/packages/UI)
+[2.718s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[2.718s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[2.719s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[2.719s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[2.732s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[2.732s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[2.732s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[2.783s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[2.784s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/rokey/Fullfillment_ws/install/local_setup.ps1'
+[2.785s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/rokey/Fullfillment_ws/install/_local_setup_util_ps1.py'
+[2.789s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/rokey/Fullfillment_ws/install/setup.ps1'
+[2.793s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/rokey/Fullfillment_ws/install/local_setup.sh'
+[2.795s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/rokey/Fullfillment_ws/install/_local_setup_util_sh.py'
+[2.796s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/rokey/Fullfillment_ws/install/setup.sh'
+[2.800s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/rokey/Fullfillment_ws/install/local_setup.bash'
+[2.801s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/rokey/Fullfillment_ws/install/setup.bash'
+[2.804s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/rokey/Fullfillment_ws/install/local_setup.zsh'
+[2.805s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/rokey/Fullfillment_ws/install/setup.zsh'

@@ -1,0 +1,21 @@
+[1.393s] Invoking command in '/home/rokey/Fullfillment_ws/Gripper_Camera/Gripper_Camera_ws/src/image_sub': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/rokey/Fullfillment_ws/build/image_sub/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/rokey/Fullfillment_ws/install/image_sub/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../../../build/image_sub build --build-base /home/rokey/Fullfillment_ws/build/image_sub/build install --record /home/rokey/Fullfillment_ws/build/image_sub/install.log --single-version-externally-managed install_data
+[1.786s] running egg_info
+[1.787s] writing ../../../../build/image_sub/image_sub.egg-info/PKG-INFO
+[1.787s] writing dependency_links to ../../../../build/image_sub/image_sub.egg-info/dependency_links.txt
+[1.788s] writing entry points to ../../../../build/image_sub/image_sub.egg-info/entry_points.txt
+[1.788s] writing requirements to ../../../../build/image_sub/image_sub.egg-info/requires.txt
+[1.788s] writing top-level names to ../../../../build/image_sub/image_sub.egg-info/top_level.txt
+[1.792s] reading manifest file '../../../../build/image_sub/image_sub.egg-info/SOURCES.txt'
+[1.793s] writing manifest file '../../../../build/image_sub/image_sub.egg-info/SOURCES.txt'
+[1.793s] running build
+[1.793s] running build_py
+[1.794s] running install
+[1.795s] running install_lib
+[1.797s] running install_data
+[1.797s] running install_egg_info
+[1.799s] removing '/home/rokey/Fullfillment_ws/install/image_sub/lib/python3.10/site-packages/image_sub-0.0.0-py3.10.egg-info' (and everything under it)
+[1.800s] Copying ../../../../build/image_sub/image_sub.egg-info to /home/rokey/Fullfillment_ws/install/image_sub/lib/python3.10/site-packages/image_sub-0.0.0-py3.10.egg-info
+[1.801s] running install_scripts
+[1.826s] Installing image_subscriber script to /home/rokey/Fullfillment_ws/install/image_sub/lib/image_sub
+[1.827s] writing list of installed files to '/home/rokey/Fullfillment_ws/build/image_sub/install.log'
+[1.882s] Invoked command in '/home/rokey/Fullfillment_ws/Gripper_Camera/Gripper_Camera_ws/src/image_sub' returned '0': CONDA_PROMPT_MODIFIER=(base) PYTHONPATH=/home/rokey/Fullfillment_ws/build/image_sub/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/rokey/Fullfillment_ws/install/image_sub/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../../../build/image_sub build --build-base /home/rokey/Fullfillment_ws/build/image_sub/build install --record /home/rokey/Fullfillment_ws/build/image_sub/install.log --single-version-externally-managed install_data
