@@ -6,12 +6,13 @@ from PyQt5.uic import loadUi
 from PyQt5.QtCore import pyqtSignal
 from utils.auth import load_user_data, save_user_data
 
+
 class LoginWindow(QMainWindow):
     login_success = pyqtSignal()
 
     def __init__(self):
         super().__init__()
-        loadUi("src/Fullfillment/Fullfillment/UI/ui/login_window.ui", self)
+        loadUi("src/Fullfillment/Fullfillment/UI/ui/login_window.ui", self) 
         
         self.password_input.setEchoMode(QLineEdit.Password)
         self.login_button.clicked.connect(self.login)
