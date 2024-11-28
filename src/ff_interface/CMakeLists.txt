@@ -9,6 +9,7 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rosidl_default_generators REQUIRED)  # 메시지 생성 패키지
 find_package(geometry_msgs REQUIRED)             # geometry_msgs 의존성 추가
+find_package(rosidl_typesupport_c REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
