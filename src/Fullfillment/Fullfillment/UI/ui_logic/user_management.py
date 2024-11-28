@@ -11,7 +11,7 @@ class LoginWindow(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        loadUi("src/UI/ui/login_window.ui", self)
+        loadUi("src/Fullfillment/Fullfillment/UI/ui/login_window.ui", self)
         
         self.password_input.setEchoMode(QLineEdit.Password)
         self.login_button.clicked.connect(self.login)
@@ -34,7 +34,7 @@ class LoginWindow(QMainWindow):
 class MyPageWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        loadUi("src/UI/ui/mypage_window.ui", self)
+        loadUi("src/Fullfillment/Fullfillment/UI/ui/mypage_window.ui", self)
 
         # Widgets
         user_data = load_user_data() # 데이터로드

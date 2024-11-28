@@ -20,7 +20,7 @@ class WorkspaceWindow(QMainWindow):
 
     def __init__(self, camera_handler):
         super().__init__()
-        loadUi("src/UI/ui/workspace.ui", self)
+        loadUi("src/Fullfillment/Fullfillment/UI/ui/workspace.ui", self)
 
         self.control_window = ControlWindow(camera_handler)
         self.control_window.send_text.connect(self.update_text_browser)
@@ -100,7 +100,7 @@ class ControlWindow(QMainWindow):
     def __init__(self, camera_handler ,parent=None):
         if not self._initialized:
             super().__init__(parent)
-            loadUi("src/UI/ui/control_window.ui", self)
+            loadUi("src/Fullfillment/Fullfillment/UI/ui/control_window.ui", self)
 
             # 버튼 연결
             self.play.clicked.connect(self.play_robot)
