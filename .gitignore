@@ -1,6 +1,7 @@
 # Ignore Python compiled files
 *.pyc
 __pycache__/
+.vscode/
 
 # Ignore build and install directories
 build/
