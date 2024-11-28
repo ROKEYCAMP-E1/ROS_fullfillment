@@ -1,4 +1,4 @@
-# ui_main.py
+# ui_node.py
 
 import rclpy
 from rclpy.node import Node
@@ -6,14 +6,16 @@ from rclpy.node import Node
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.uic import loadUi  # .ui 파일 로드를 위한 모듈
 from PyQt5.QtCore import QTimer, pyqtSignal
-from PyQt5.QtGui import QPixmap  # QPixmap 임포트 추가
+from PyQt5.QtGui import QPixmap, QImage  # QPixmap 임포트 추가
 from datetime import datetime
 from utils.send_email import send_email
 from utils.auth import load_user_data
-from ui_logic.TopView_Camera_video import CameraHandler
 from ui_logic.user_management import LoginWindow, MyPageWindow
 import sys
 import os
+from sensor_msgs.msg import Image # ArUCo 영상 토픽 구독을 위한 임포트
+from cv_bridge import CvBridge # ArUCo 영상 토픽 구독을 위한 임포트
+from rclpy.qos import QoSProfile
 
 # 프로젝트의 루트 디렉토리를 Python의 모듈 검색 경로에 추가
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
@@ -26,11 +28,11 @@ class WorkspaceWindow(QMainWindow):
     mypage_load = pyqtSignal() # 마이페이지 화면전환 로직을 위한 시그널 송출
     control_load = pyqtSignal() # 마이페이지 화면전환 로직을 위한 시그널 송출
 
-    def __init__(self, camera_handler):
+    def __init__(self):
         super().__init__()
         loadUi("src/Fullfillment/Fullfillment/UI/ui/workspace.ui", self)
     
-        self.control_window = ControlWindow(camera_handler)
+        self.control_window = ControlWindow()
         self.control_window.send_text.connect(self.update_text_browser)
 
         self.ros_thread = ROS2Thread()
@@ -55,14 +57,9 @@ class WorkspaceWindow(QMainWindow):
         self.mypage_button.clicked.connect(self.emit_mypage_load) 
         self.control.clicked.connect(self.emit_control_load)
 
-        # TopView Camera 연결
-        self.camera_handler = camera_handler
-        self.camera_handler.frame_ready.connect(self.update_frame)  # 프레임 연결
 
         self.current_job = None
 
-    def update_frame(self, frame):
-        self.worldcamera.setPixmap(QPixmap.fromImage(frame))
 
 
     def emit_mypage_load(self):
@@ -108,14 +105,14 @@ class ControlWindow(QMainWindow):
     run_con_signal = pyqtSignal(int)
     stop_con_signal = pyqtSignal()
 
-    def __new__(cls, camera_handler=None, *args, **kwargs):
+    def __new__(cls, *args, **kwargs):
         if not cls._instance:
             cls._instance = super(ControlWindow, cls).__new__(cls, *args, **kwargs)
     
         return cls._instance
 
 
-    def __init__(self, camera_handler ,parent=None):
+    def __init__(self, parent=None):
         if not self._initialized:
             super().__init__(parent)
             loadUi("src/Fullfillment/Fullfillment/UI/ui/control_window.ui", self)
@@ -129,14 +126,7 @@ class ControlWindow(QMainWindow):
             self.stop_con.clicked.connect(self.stop_conveyor)
             self.gohome.clicked.connect(self.emit_workspace_load)
 
-            # 카메라 연결
-            self.camera_handler = camera_handler
-            self.camera_handler.frame_ready.connect(self.update_frame)  # 프레임 연결
-
             self._initialized = True  # 초기화 완료 플래그 설정
-
-    def update_frame(self, frame):
-        self.worldcamera.setPixmap(QPixmap.fromImage(frame))
         
     def emit_workspace_load(self):
         self.workspace_load.emit()
@@ -181,25 +171,31 @@ class UINode(Node):
 
         self.app = QApplication([])
 
-        # 공용 CameraHandler 객체 생성
-        self.camera_handler = CameraHandler(device_path="/dev/video2")
-        self.camera_handler.start()
-
         # ROS2Thread 초기화
         self.ros2_thread = ROS2Thread()
         self.ros2_thread.start()
 
         # 화면 초기화
         self.login_window = LoginWindow()
-        self.workspace = WorkspaceWindow(self.camera_handler)
+        self.workspace = WorkspaceWindow()
         self.mypage_window = MyPageWindow()
-        self.control_window = ControlWindow(self.camera_handler)
+        self.control_window = ControlWindow()
 
         # 화면 간 연결 설정
         self.login_window.login_success.connect(self.open_workspace)
         self.workspace.mypage_load.connect(self.open_mypage)
         self.workspace.control_load.connect(self.open_control)
         self.control_window.workspace_load.connect(self.back_to_workspace)
+
+        # ArUCo 영상 토픽 구독
+        self.bridge = CvBridge()
+        qos_profile = QoSProfile(depth=10)
+        self.create_subscription(
+            Image, 
+            'aruco_image', 
+            self.image_callback, 
+            qos_profile
+        )
 
         self.login_window.show()
 
@@ -222,6 +218,23 @@ class UINode(Node):
         self.app.exec_()
         self.ros2_thread.stop()
 
+    def image_callback(self, msg): # ArUCo image 토픽 콜백
+        try:
+            # sensor_msgs/Image -> OpenCV 이미지로 변환
+            cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding="bgr8")
+
+            # OpenCV 이미지를 QPixmap으로 변환
+            height, width, channel = cv_image.shape
+            bytes_per_line = 3 * width
+            qt_image = QImage(cv_image.data, width, height, bytes_per_line, QImage.Format_RGB888).rgbSwapped()
+            pixmap = QPixmap.fromImage(qt_image)
+
+            # WorkspaceWindow의 worldcamera에 이미지 표시
+            self.workspace.worldcamera.setPixmap(pixmap)
+            self.control_window.worldcamera.setPixmap(pixmap)
+        except CvBridgeError as e:
+            self.get_logger().error(f"Failed to convert image: {e}")
+
 
 def main(args=None):
     rclpy.init(args=args)
@@ -232,7 +245,6 @@ def main(args=None):
     except KeyboardInterrupt:
         ui_node.get_logger().info("Shutting down UI Node...")
     finally:
-        ui_node.camera_handler.stop()
         rclpy.shutdown()
 
 

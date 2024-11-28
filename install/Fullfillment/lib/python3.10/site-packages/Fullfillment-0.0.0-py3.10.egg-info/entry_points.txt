@@ -1,0 +1,4 @@
+[console_scripts]
+TopView_Camera_node = Fullfillment.TopView_Camera.TopView_Camera_node:main
+UI_node = Fullfillment.UI.ui_node:main
+

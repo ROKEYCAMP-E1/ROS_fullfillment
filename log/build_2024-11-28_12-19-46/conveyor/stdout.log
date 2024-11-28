@@ -1,0 +1,52 @@
+running egg_info
+creating ../../build/conveyor/conveyor.egg-info
+writing ../../build/conveyor/conveyor.egg-info/PKG-INFO
+writing dependency_links to ../../build/conveyor/conveyor.egg-info/dependency_links.txt
+writing entry points to ../../build/conveyor/conveyor.egg-info/entry_points.txt
+writing requirements to ../../build/conveyor/conveyor.egg-info/requires.txt
+writing top-level names to ../../build/conveyor/conveyor.egg-info/top_level.txt
+writing manifest file '../../build/conveyor/conveyor.egg-info/SOURCES.txt'
+reading manifest file '../../build/conveyor/conveyor.egg-info/SOURCES.txt'
+writing manifest file '../../build/conveyor/conveyor.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/rokey/Fullfillment_ws/build/conveyor/build
+creating /home/rokey/Fullfillment_ws/build/conveyor/build/lib
+creating /home/rokey/Fullfillment_ws/build/conveyor/build/lib/conveyor
+copying conveyor/conveyorcontroller.py -> /home/rokey/Fullfillment_ws/build/conveyor/build/lib/conveyor
+copying conveyor/user_management.py -> /home/rokey/Fullfillment_ws/build/conveyor/build/lib/conveyor
+copying conveyor/workspace.py -> /home/rokey/Fullfillment_ws/build/conveyor/build/lib/conveyor
+copying conveyor/pub_step.py -> /home/rokey/Fullfillment_ws/build/conveyor/build/lib/conveyor
+copying conveyor/main.py -> /home/rokey/Fullfillment_ws/build/conveyor/build/lib/conveyor
+copying conveyor/__init__.py -> /home/rokey/Fullfillment_ws/build/conveyor/build/lib/conveyor
+creating /home/rokey/Fullfillment_ws/build/conveyor/build/lib/conveyor/ui
+copying conveyor/ui/__init__.py -> /home/rokey/Fullfillment_ws/build/conveyor/build/lib/conveyor/ui
+running install
+running install_lib
+creating /home/rokey/Fullfillment_ws/install/conveyor/lib/python3.10/site-packages/conveyor
+creating /home/rokey/Fullfillment_ws/install/conveyor/lib/python3.10/site-packages/conveyor/ui
+copying /home/rokey/Fullfillment_ws/build/conveyor/build/lib/conveyor/ui/__init__.py -> /home/rokey/Fullfillment_ws/install/conveyor/lib/python3.10/site-packages/conveyor/ui
+copying /home/rokey/Fullfillment_ws/build/conveyor/build/lib/conveyor/conveyorcontroller.py -> /home/rokey/Fullfillment_ws/install/conveyor/lib/python3.10/site-packages/conveyor
+copying /home/rokey/Fullfillment_ws/build/conveyor/build/lib/conveyor/user_management.py -> /home/rokey/Fullfillment_ws/install/conveyor/lib/python3.10/site-packages/conveyor
+copying /home/rokey/Fullfillment_ws/build/conveyor/build/lib/conveyor/workspace.py -> /home/rokey/Fullfillment_ws/install/conveyor/lib/python3.10/site-packages/conveyor
+copying /home/rokey/Fullfillment_ws/build/conveyor/build/lib/conveyor/pub_step.py -> /home/rokey/Fullfillment_ws/install/conveyor/lib/python3.10/site-packages/conveyor
+copying /home/rokey/Fullfillment_ws/build/conveyor/build/lib/conveyor/main.py -> /home/rokey/Fullfillment_ws/install/conveyor/lib/python3.10/site-packages/conveyor
+copying /home/rokey/Fullfillment_ws/build/conveyor/build/lib/conveyor/__init__.py -> /home/rokey/Fullfillment_ws/install/conveyor/lib/python3.10/site-packages/conveyor
+byte-compiling /home/rokey/Fullfillment_ws/install/conveyor/lib/python3.10/site-packages/conveyor/ui/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/rokey/Fullfillment_ws/install/conveyor/lib/python3.10/site-packages/conveyor/conveyorcontroller.py to conveyorcontroller.cpython-310.pyc
+byte-compiling /home/rokey/Fullfillment_ws/install/conveyor/lib/python3.10/site-packages/conveyor/user_management.py to user_management.cpython-310.pyc
+byte-compiling /home/rokey/Fullfillment_ws/install/conveyor/lib/python3.10/site-packages/conveyor/workspace.py to workspace.cpython-310.pyc
+byte-compiling /home/rokey/Fullfillment_ws/install/conveyor/lib/python3.10/site-packages/conveyor/pub_step.py to pub_step.cpython-310.pyc
+byte-compiling /home/rokey/Fullfillment_ws/install/conveyor/lib/python3.10/site-packages/conveyor/main.py to main.cpython-310.pyc
+byte-compiling /home/rokey/Fullfillment_ws/install/conveyor/lib/python3.10/site-packages/conveyor/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /home/rokey/Fullfillment_ws/install/conveyor/share/ament_index
+creating /home/rokey/Fullfillment_ws/install/conveyor/share/ament_index/resource_index
+creating /home/rokey/Fullfillment_ws/install/conveyor/share/ament_index/resource_index/packages
+copying resource/conveyor -> /home/rokey/Fullfillment_ws/install/conveyor/share/ament_index/resource_index/packages
+copying package.xml -> /home/rokey/Fullfillment_ws/install/conveyor/share/conveyor
+running install_egg_info
+Copying ../../build/conveyor/conveyor.egg-info to /home/rokey/Fullfillment_ws/install/conveyor/lib/python3.10/site-packages/conveyor-0.0.0-py3.10.egg-info
+running install_scripts
+Installing main script to /home/rokey/Fullfillment_ws/install/conveyor/lib/conveyor
+writing list of installed files to '/home/rokey/Fullfillment_ws/build/conveyor/install.log'
