@@ -12,6 +12,14 @@ from utils.send_email import send_email
 from utils.auth import load_user_data
 from ui_logic.TopView_Camera_video import CameraHandler
 from ui_logic.user_management import LoginWindow, MyPageWindow
+import sys
+import os
+
+# 프로젝트의 루트 디렉토리를 Python의 모듈 검색 경로에 추가
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+
+# 이제 Fullfillment 패키지에서 import 가능
+from Fullfillment.Conveyor.conveyorcontroller import ROS2Thread,StepPublisher
 
 
 class WorkspaceWindow(QMainWindow):
@@ -21,9 +29,16 @@ class WorkspaceWindow(QMainWindow):
     def __init__(self, camera_handler):
         super().__init__()
         loadUi("src/Fullfillment/Fullfillment/UI/ui/workspace.ui", self)
-
+    
         self.control_window = ControlWindow(camera_handler)
         self.control_window.send_text.connect(self.update_text_browser)
+
+        self.ros_thread = ROS2Thread()
+        self.ros_thread.start()
+
+        self.control_window.run_con_signal.connect(self.ros_thread.run_conveyor)
+        self.control_window.stop_con_signal.connect(self.ros_thread.stop_conveyor)
+
 
         self.jobbox.activated.connect(self.update_selected_job)  
         self.selectjob.clicked.connect(self.add_job_to_list)
@@ -89,6 +104,9 @@ class ControlWindow(QMainWindow):
     workspace_load = pyqtSignal()
     _instance = None # Singleton 인스턴스 저장
     _initialized = False  # 초기화 상태 플래그
+    # ROS2Thread와 연결할 신호 정의
+    run_con_signal = pyqtSignal(int)
+    stop_con_signal = pyqtSignal()
 
     def __new__(cls, camera_handler=None, *args, **kwargs):
         if not cls._instance:
@@ -137,9 +155,12 @@ class ControlWindow(QMainWindow):
         self.send_text.emit(text_to_send) 
 
     def run_conveyor(self):
+        self.run_con_signal.emit(100000)
         text_to_send = "conveyor run"
         self.send_text.emit(text_to_send) 
+        
     def stop_conveyor(self):
+        self.stop_con_signal.emit()
         text_to_send = "conveyor stop"
         self.send_text.emit(text_to_send) 
 
@@ -161,9 +182,12 @@ class UINode(Node):
         self.app = QApplication([])
 
         # 공용 CameraHandler 객체 생성
-        self.camera_handler = CameraHandler(device_path="/dev/video4")
+        self.camera_handler = CameraHandler(device_path="/dev/video2")
         self.camera_handler.start()
 
+        # ROS2Thread 초기화
+        self.ros2_thread = ROS2Thread()
+        self.ros2_thread.start()
 
         # 화면 초기화
         self.login_window = LoginWindow()
@@ -196,6 +220,7 @@ class UINode(Node):
 
     def run(self):
         self.app.exec_()
+        self.ros2_thread.stop()
 
 
 def main(args=None):

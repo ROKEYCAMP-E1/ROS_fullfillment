@@ -127,7 +127,7 @@ class ControlWindow(QMainWindow):
         self.send_text.emit(text_to_send) 
 
     def run_conveyor(self):
-        self.run_con_signal.emit(100000)  #
+        self.run_con_signal.emit(100000)  
         text_to_send = "conveyor run"
         self.send_text.emit(text_to_send) 
 
