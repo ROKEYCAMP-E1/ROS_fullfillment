@@ -315,17 +315,17 @@ ff_interface__rosidl_typesupport_cpp/fast:
 .PHONY : ff_interface__rosidl_typesupport_cpp/fast
 
 #=============================================================================
-# Target rules for targets named ament_cmake_python_copy_ff_interface
+# Target rules for targets named ament_cmake_python_symlink_ff_interface
 
 # Build rule for target.
-ament_cmake_python_copy_ff_interface: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ament_cmake_python_copy_ff_interface
-.PHONY : ament_cmake_python_copy_ff_interface
+ament_cmake_python_symlink_ff_interface: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ament_cmake_python_symlink_ff_interface
+.PHONY : ament_cmake_python_symlink_ff_interface
 
 # fast build rule for target.
-ament_cmake_python_copy_ff_interface/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ament_cmake_python_copy_ff_interface.dir/build.make CMakeFiles/ament_cmake_python_copy_ff_interface.dir/build
-.PHONY : ament_cmake_python_copy_ff_interface/fast
+ament_cmake_python_symlink_ff_interface/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ament_cmake_python_symlink_ff_interface.dir/build.make CMakeFiles/ament_cmake_python_symlink_ff_interface.dir/build
+.PHONY : ament_cmake_python_symlink_ff_interface/fast
 
 #=============================================================================
 # Target rules for targets named ament_cmake_python_build_ff_interface_egg
@@ -683,7 +683,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... ament_cmake_python_build_ff_interface_egg"
-	@echo "... ament_cmake_python_copy_ff_interface"
+	@echo "... ament_cmake_python_symlink_ff_interface"
 	@echo "... ff_interface"
 	@echo "... ff_interface__cpp"
 	@echo "... ff_interface__py"

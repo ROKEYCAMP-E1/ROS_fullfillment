@@ -4,3 +4,5 @@ ff_interface.egg-info/PKG-INFO
 ff_interface.egg-info/SOURCES.txt
 ff_interface.egg-info/dependency_links.txt
 ff_interface.egg-info/top_level.txt
+ff_interface/msg/__init__.py
+ff_interface/msg/_aruco_detections.py

@@ -18,7 +18,7 @@ class ArucoDetectorNode(Node):
         self.bridge = CvBridge()
 
         # 비디오 캡처 초기화
-        self.cap = cv2.VideoCapture('/dev/video4')
+        self.cap = cv2.VideoCapture('/dev/video2')
 
         # ArUCo 설정
         self.marker_length = 0.1  # 마커 크기 (미터 단위)
@@ -26,7 +26,7 @@ class ArucoDetectorNode(Node):
         self.parameters = aruco.DetectorParameters_create()
 
         # JSON 파일에서 캘리브레이션 데이터 읽기
-        calibration_file = 'src/Fullfillment/Fullfillment/TopView_Camera/calibration.json'  # JSON 파일 경로를 설정하세요
+        calibration_file = 'src/fullfillment/fullfillment/TopView_Camera/calibration.json'  # JSON 파일 경로를 설정하세요
         try:
             with open(calibration_file, 'r') as file:
                 calibration_data = json.load(file)

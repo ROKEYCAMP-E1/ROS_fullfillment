@@ -14,8 +14,12 @@ conveyor/main.py
 conveyor/pub_step.py
 conveyor/user_management.py
 conveyor/workspace.py
+conveyor.egg-info/PKG-INFO
+conveyor.egg-info/SOURCES.txt
+conveyor.egg-info/dependency_links.txt
+conveyor.egg-info/entry_points.txt
+conveyor.egg-info/requires.txt
+conveyor.egg-info/top_level.txt
+conveyor.egg-info/zip-safe
 conveyor/ui/__init__.py
 resource/conveyor
-test/test_copyright.py
-test/test_flake8.py
-test/test_pep257.py

@@ -21,7 +21,7 @@ from rclpy.qos import QoSProfile
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 # 이제 Fullfillment 패키지에서 import 가능
-from Fullfillment.Conveyor.conveyorcontroller import ROS2Thread,StepPublisher
+from fullfillment.Conveyor.conveyorcontroller import ROS2Thread,StepPublisher
 
 
 class WorkspaceWindow(QMainWindow):
@@ -30,7 +30,7 @@ class WorkspaceWindow(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        loadUi("src/Fullfillment/Fullfillment/UI/ui/workspace.ui", self)
+        loadUi("src/fullfillment/fullfillment/UI/ui/workspace.ui", self)
     
         self.control_window = ControlWindow()
         self.control_window.send_text.connect(self.update_text_browser)
@@ -115,7 +115,7 @@ class ControlWindow(QMainWindow):
     def __init__(self, parent=None):
         if not self._initialized:
             super().__init__(parent)
-            loadUi("src/Fullfillment/Fullfillment/UI/ui/control_window.ui", self)
+            loadUi("src/fullfillment/fullfillment/UI/ui/control_window.ui", self)
 
             # 버튼 연결
             self.play.clicked.connect(self.play_robot)
