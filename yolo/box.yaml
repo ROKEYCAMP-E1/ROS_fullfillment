@@ -1,0 +1,9 @@
+train: /content/drive/MyDrive/yolo/train/images
+val: /content/drive/MyDrive/yolo/val/images
+
+nc: 3  # 클래스 개수
+names:
+  0: red
+  1: blue
+  2: purple
+

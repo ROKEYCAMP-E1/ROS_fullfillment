@@ -13,7 +13,7 @@ objp[:,:2] = np.mgrid[0:9,0:6].T.reshape(-1,2)
 objpoints = [] # 3d point in real world space
 imgpoints = [] # 2d points in image plane.
  
-images = glob.glob('/home/rokey/Desktop/ROKEY/대면/4주차/camera1/20*.jpg')
+images = glob.glob('/home/rokey/4W/aruco/camera1/20*.jpg')
  
 for fname in images:
     img = cv.imread(fname)
