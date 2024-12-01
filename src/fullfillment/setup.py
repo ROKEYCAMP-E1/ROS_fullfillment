@@ -6,7 +6,6 @@ setup(
     name=package_name,
     version='0.0.0',
     packages=find_packages(include=[package_name, f"{package_name}.*"]),  # 모든 하위 디렉토리 포함
-    package_dir={'': '.'},
     data_files=[
         ('share/ament_index/resource_index/packages', ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
@@ -21,6 +20,7 @@ setup(
         'console_scripts': [
             'UI_node = fullfillment.UI.ui_node:main',
             'TopView_Camera_node = fullfillment.TopView_Camera.TopView_Camera_node:main',
+            'Conveyor_node = fullfillment.Conveyor.conveyorcontroller:main'
         ],
     },
 )

@@ -17,6 +17,8 @@ from sensor_msgs.msg import Image # ArUCo 영상 토픽 구독을 위한 임포�
 from cv_bridge import CvBridge # ArUCo 영상 토픽 구독을 위한 임포트
 from rclpy.qos import QoSProfile
 
+from ff_interface.srv import ConveyorRun  # 서비스 임포트
+
 # 프로젝트의 루트 디렉토리를 Python의 모듈 검색 경로에 추가
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
@@ -149,7 +151,7 @@ class ControlWindow(QMainWindow):
         self.send_text.emit(text_to_send) 
 
     def run_conveyor(self):
-        self.run_con_signal.emit(100000)
+        self.run_con_signal.emit(1000000)
         text_to_send = "conveyor run"
         self.send_text.emit(text_to_send) 
         
@@ -175,6 +177,9 @@ class UINode(Node):
 
         self.app = QApplication([])
 
+        # ROS2 서비스 클라이언트 생성
+        self.conveyor_service_client = self.create_client(ConveyorRun, 'conveyor_control')
+
         # ROS2Thread 초기화
         self.ros2_thread = ROS2Thread()
         self.ros2_thread.start()
@@ -186,7 +191,7 @@ class UINode(Node):
         self.control_window = ControlWindow()
 
         # 화면 간 연결 설정
-        self.login_window.login_success.connect(self.open_workspace)
+        self.login_window.login_success.connect(self.start_conveyor_and_open_workspace)
         self.workspace.mypage_load.connect(self.open_mypage)
         self.workspace.control_load.connect(self.open_control)
         self.control_window.workspace_load.connect(self.back_to_workspace)
@@ -201,11 +206,40 @@ class UINode(Node):
             qos_profile
         )
 
+        # QApplication 종료 이벤트 연결
+        self.app.aboutToQuit.connect(self.stop_conveyor_on_exit)
+
         self.login_window.show()
 
-    def open_workspace(self):
+    def call_conveyor_service(self, steps):
+        """ConveyorRun 서비스 호출"""
+        from ff_interface.srv import ConveyorRun  # 서비스 메시지 임포트
+        client = self.create_client(ConveyorRun, 'ConveyorRun')
+
+        while not client.wait_for_service(timeout_sec=1.0):
+            self.get_logger().warn("Waiting for ConveyorRun service...")
+
+        request = ConveyorRun.Request()
+        request.steps = steps
+
+        future = client.call_async(request)
+        rclpy.spin_until_future_complete(self, future)
+
+        if future.result() is not None:
+            self.get_logger().info(f"ConveyorRun service response: {future.result().message}")
+        else:
+            self.get_logger().error("ConveyorRun service call failed.")
+
+
+    def start_conveyor_and_open_workspace(self):
+        """컨베이어 시작 및 워크스페이스 창 열기"""
+        self.call_conveyor_service(steps=100000)  # 예: 100,000 스텝
         self.workspace.show()
         self.login_window.close()
+
+    def stop_conveyor_on_exit(self):
+        """애플리케이션 종료 시 컨베이어 정지"""
+        self.call_conveyor_service(steps=0)  # 정지
 
     def open_mypage(self):
         self.mypage_window.show()
@@ -242,7 +276,6 @@ class UINode(Node):
             self.workspace.worldcamera.setPixmap(pixmap)
             self.control_window.worldcamera.setPixmap(pixmap)
 
-            self.get_logger().info("Updated worldcamera with new frame.")
         except Exception as e:
             self.get_logger().error(f"Failed to process image: {e}")
 

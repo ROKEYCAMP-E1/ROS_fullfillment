@@ -20,7 +20,7 @@ class ArucoDetectorNode(Node):
 
         # 비디오 캡처 초기화
         # 비디오 usb포트 확인하는 방법 : ffplay /dev/video4
-        self.cap = cv2.VideoCapture('/dev/video4')
+        self.cap = cv2.VideoCapture('/dev/video2')
 
         # MJPG 포맷으로 설정
         self.cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*'MJPG'))
