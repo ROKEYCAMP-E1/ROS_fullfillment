@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.uic import loadUi
 from PyQt5.QtCore import pyqtSignal
-from utils.auth import load_user_data, save_user_data
+from fullfillment.UI.ui_utils.auth import load_user_data, save_user_data
 
 
 class LoginWindow(QMainWindow):

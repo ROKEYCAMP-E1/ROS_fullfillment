@@ -9,6 +9,7 @@ import cv2
 import cv2.aruco as aruco
 from cv_bridge import CvBridge
 import json
+import numpy as np
 
 class ArucoDetectorNode(Node):
     def __init__(self):
@@ -18,7 +19,20 @@ class ArucoDetectorNode(Node):
         self.bridge = CvBridge()
 
         # 비디오 캡처 초기화
-        self.cap = cv2.VideoCapture('/dev/video2')
+        # 비디오 usb포트 확인하는 방법 : ffplay /dev/video4
+        self.cap = cv2.VideoCapture('/dev/video4')
+
+        # MJPG 포맷으로 설정
+        self.cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*'MJPG'))
+
+        # 해상도 설정: 1280x720
+        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+
+        # 카메라 연결 확인 로깅
+        if not self.cap.isOpened():
+            self.get_logger().error("Failed to open video capture device.")
+            raise RuntimeError("Could not open video capture device.")
 
         # ArUCo 설정
         self.marker_length = 0.1  # 마커 크기 (미터 단위)
@@ -30,18 +44,21 @@ class ArucoDetectorNode(Node):
         try:
             with open(calibration_file, 'r') as file:
                 calibration_data = json.load(file)
-                self.mtx = calibration_data['mtx']
-                self.dist = calibration_data.get('dist', [0, 0, 0, 0, 0])  # dist 기본값 설정
+                self.mtx = np.array(calibration_data['mtx'])
+                self.dist = np.array(calibration_data.get('dist', [0, 0, 0, 0, 0]))  # dist 기본값 설정
         except Exception as e:
             self.get_logger().error(f"Failed to load calibration data: {e}")
             raise
+
+        # Timer로 detect_markers 주기 호출
+        self.timer = self.create_timer(0.1, self.detect_markers)
 
     def detect_markers(self):
         ret, frame = self.cap.read()
         if not ret:
             self.get_logger().warn("Failed to capture frame.")
             return
-
+        
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         # ArUCo 마커 탐지
@@ -79,7 +96,6 @@ class ArucoDetectorNode(Node):
 
             # detections 퍼블리시
             self.detections_publisher.publish(detection_msg)
-            self.get_logger().info(f"Published {len(marker_ids)} markers.")
         else:
             self.get_logger().info("No markers detected.")
 
@@ -87,7 +103,6 @@ class ArucoDetectorNode(Node):
         try:
             image_message = self.bridge.cv2_to_imgmsg(frame, encoding="bgr8")
             self.image_publisher.publish(image_message)
-            self.get_logger().info("Published ArUCo image.")
         except Exception as e:
             self.get_logger().error(f"Failed to publish image: {e}")
 

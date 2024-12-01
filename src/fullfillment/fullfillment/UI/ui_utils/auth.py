@@ -1,7 +1,7 @@
 import json
 
 # 파일 경로
-DATA_FILE = "src/fullfillment/fullfillment/UI/utils/user_data.json"
+DATA_FILE = "src/fullfillment/fullfillment/UI/ui_utils/user_data.json"
 
 
 # 사용자 데이터 로드 함수

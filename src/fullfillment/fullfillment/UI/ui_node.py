@@ -8,9 +8,9 @@ from PyQt5.uic import loadUi  # .ui 파일 로드를 위한 모듈
 from PyQt5.QtCore import QTimer, pyqtSignal
 from PyQt5.QtGui import QPixmap, QImage  # QPixmap 임포트 추가
 from datetime import datetime
-from utils.send_email import send_email
-from utils.auth import load_user_data
-from ui_logic.user_management import LoginWindow, MyPageWindow
+from fullfillment.UI.ui_utils.send_email import send_email
+from fullfillment.UI.ui_utils.auth import load_user_data
+from fullfillment.UI.ui_logic.user_management import LoginWindow, MyPageWindow
 import sys
 import os
 from sensor_msgs.msg import Image # ArUCo 영상 토픽 구독을 위한 임포트
@@ -22,6 +22,10 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')
 
 # 이제 Fullfillment 패키지에서 import 가능
 from fullfillment.Conveyor.conveyorcontroller import ROS2Thread,StepPublisher
+
+# PyQt 환경 변수 추가 (ros2 run으로 실행)
+import os
+os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = "/usr/lib/x86_64-linux-gnu/qt5/plugins"
 
 
 class WorkspaceWindow(QMainWindow):
@@ -122,8 +126,8 @@ class ControlWindow(QMainWindow):
             self.pause.clicked.connect(self.pause_robot)
             self.stop.clicked.connect(self.stop_robot)
             self.resume.clicked.connect(self.resume_robot)
-            self.run_con.clicked.connect(self.run_conveyor)
-            self.stop_con.clicked.connect(self.stop_conveyor)
+            self.run_con.clicked.connect(self.run_conveyor) 
+            self.stop_con.clicked.connect(self.stop_conveyor) 
             self.gohome.clicked.connect(self.emit_workspace_load)
 
             self._initialized = True  # 초기화 완료 플래그 설정
@@ -215,6 +219,11 @@ class UINode(Node):
         self.control_window.close()
 
     def run(self):
+        # QTimer로 ROS2 콜백을 주기적으로 호출
+        timer = QTimer()
+        timer.timeout.connect(lambda: rclpy.spin_once(self, timeout_sec=0.01))
+        timer.start(10)  # 10ms 간격으로 ROS2 이벤트 처리
+
         self.app.exec_()
         self.ros2_thread.stop()
 
@@ -232,8 +241,10 @@ class UINode(Node):
             # WorkspaceWindow의 worldcamera에 이미지 표시
             self.workspace.worldcamera.setPixmap(pixmap)
             self.control_window.worldcamera.setPixmap(pixmap)
-        except CvBridgeError as e:
-            self.get_logger().error(f"Failed to convert image: {e}")
+
+            self.get_logger().info("Updated worldcamera with new frame.")
+        except Exception as e:
+            self.get_logger().error(f"Failed to process image: {e}")
 
 
 def main(args=None):
