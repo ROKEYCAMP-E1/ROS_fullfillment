@@ -16,19 +16,18 @@ import os
 from sensor_msgs.msg import Image # ArUCo 영상 토픽 구독을 위한 임포트
 from cv_bridge import CvBridge # ArUCo 영상 토픽 구독을 위한 임포트
 from rclpy.qos import QoSProfile
-from std_msgs.msg import String
-from rclpy.action import ActionClient
 
 from ff_interface.srv import ConveyorRun  # 서비스 임포트
-from ff_interface.srv import ConveyorConnection  # 생성한 서비스 가져오기
-from ff_interface.action import Job
-from ff_interface.srv import RobotControl
 
 # 프로젝트의 루트 디렉토리를 Python의 모듈 검색 경로에 추가
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 # 이제 Fullfillment 패키지에서 import 가능
 from fullfillment.Conveyor.conveyorcontroller import ROS2Thread,StepPublisher
+
+# PyQt 환경 변수 추가 (ros2 run으로 실행)
+import os
+os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = "/usr/lib/x86_64-linux-gnu/qt5/plugins"
 
 
 class WorkspaceWindow(QMainWindow):
@@ -38,7 +37,8 @@ class WorkspaceWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         loadUi("src/fullfillment/fullfillment/UI/ui/workspace.ui", self)
-    
+
+        
         self.control_window = ControlWindow()
         self.control_window.send_text.connect(self.update_text_browser)
 
@@ -57,62 +57,17 @@ class WorkspaceWindow(QMainWindow):
         self.elapsed_time = 0  
 
         self.selected_list = []  # 선택된 작업 저장
-        self.warnningbox.setText("")
-        self.statusbox.setText("")  # 텍스트 초기화
-        self.timerbox.setText("경과 시간:  초")
+        self.textBrowser.setText("")
+        self.textBrowser_2.setText("")  # 텍스트 초기화
+        self.textBrowser_3.setText("경과 시간:  초")
 
         self.mypage_button.clicked.connect(self.emit_mypage_load) 
         self.control.clicked.connect(self.emit_control_load)
 
-        # Job Action 클라이언트 생성
-        self.job_action_client = None
-        self.setup_action_client()
+
+        self.current_job = None
 
 
-    def setup_action_client(self):
-        """Job Action 클라이언트를 설정"""
-        self.node = rclpy.create_node('job_action_client')
-        self.job_action_client = ActionClient(self.node, Job, '/job')
-
-    def update_selected_job(self):
-        """현재 ComboBox에서 선택된 작업을 업데이트"""
-        current_job = self.jobbox.currentText()
-        self.current_job = current_job  # 선택된 작업 저장
-
-    def send_job_action(self, job):
-        """Job Action Goal을 서버에 전송"""
-        if not self.job_action_client.wait_for_server(timeout_sec=1.0):
-            self.warnningbox.append("[ERROR] Action server '/job' is not available!")
-            return
-
-        goal_msg = Job.Goal()
-        goal_msg.job = job  # 작업 이름 설정
-
-        # 비동기 방식으로 Goal 전송
-        self.future = self.job_action_client.send_goal_async(goal_msg, self.handle_feedback)
-        self.future.add_done_callback(self.handle_job_response)
-
-
-    def handle_feedback(self, feedback_msg):
-        """Job Action의 피드백 처리"""
-        feedback = feedback_msg.feedback
-        self.statusbox.append(f"[INFO] Job in progress: {feedback.status}")
-
-
-    def handle_job_response(self, future):
-        """Job Action의 결과 처리"""
-        try:
-            result = future.result().result
-            self.timer_obj.stop()  # 타이머 정지
-            if result.job_completed:
-                self.statusbox.append(f"[INFO] Job '{result.details}' completed successfully!")
-            else:
-                self.warnningbox.append(f"[ERROR] Job failed: {result.details}")
-        except Exception as e:
-            self.warnningbox.append(f"[ERROR] Action call failed: {str(e)}")
-        finally:
-            # 최종 경과 시간 표시
-            self.timerbox.setText(f"총 경과 시간: {self.elapsed_time} 초")
 
     def emit_mypage_load(self):
         self.mypage_load.emit()
@@ -120,29 +75,32 @@ class WorkspaceWindow(QMainWindow):
     def emit_control_load(self):
         self.control_load.emit()
 
+    def update_selected_job(self):
+        """현재 ComboBox에서 선택된 작업을 업데이트"""
+        current_job = self.jobbox.currentText()
+        self.current_job = current_job  # 선택된 작업 저장
 
 
     def add_job_to_list(self):
         """선택된 작업을 리스트에 누적"""
         if self.current_job:
             self.selected_list.append(self.current_job)  # 리스트에 추가
-            self.statusbox.append(self.current_job)  # 텍스트 브라우저에 추가
+            self.textBrowser_2.append(self.current_job)  # 텍스트 브라우저에 추가
 
-            # Action 시작 시간 초기화
+            self.start_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # 작업 시작 시간 저장
+
+            # 타이머 초기화 및 시작
             self.elapsed_time = 0
             self.timer_obj.start(1000)  # 1초마다 update_timer 실행
-
-            # Job Action 호출
-            self.send_job_action(self.current_job)
 
     def update_timer(self):
             """타이머를 1초 단위로 업데이트"""
             self.elapsed_time += 1  # 1초 증가
-            self.timerbox.setText(f"경과 시간: {self.elapsed_time} 초")  # textBrowser3에 경과 시간 표시
+            self.textBrowser_3.setText(f"경과 시간: {self.elapsed_time} 초")  # textBrowser3에 경과 시간 표시
 
     def update_text_browser(self, text):
         """ControlWindow에서 전달받은 텍스트를 textBrowser에 출력"""
-        self.warnningbox.append(text)  # 텍스트 브라우저에 텍스트 추가
+        self.textBrowser.append(text)  # 텍스트 브라우저에 텍스트 추가
 
 
 class ControlWindow(QMainWindow):
@@ -181,58 +139,38 @@ class ControlWindow(QMainWindow):
         self.workspace_load.emit()
 
     def play_robot(self):
-        text_to_send = "[Control] Robot play"
-        self.send_text.emit(text_to_send)  # 기존 동작 유지
-        self._send_robot_command("forward", text_to_send)
-
+        text_to_send = "Robot play"
+        self.send_text.emit(text_to_send) 
     def pause_robot(self):
-        text_to_send = "[Control] Robot pause"
-        self.send_text.emit(text_to_send)  # 기존 동작 유지
-        self._send_robot_command("stop", text_to_send)
-
+        text_to_send = "Robot pause"
+        self.send_text.emit(text_to_send) 
     def stop_robot(self):
-        text_to_send = "[Control] Robot stop"
-        self.send_text.emit(text_to_send)  # 기존 동작 유지
-        self._send_robot_command("stop", text_to_send)
-
+        text_to_send = "Robot stop"
+        self.send_text.emit(text_to_send) 
     def resume_robot(self):
-        text_to_send = "[Control] Robot resume"
-        self.send_text.emit(text_to_send)  # 기존 동작 유지
-        self._send_robot_command("forward", text_to_send)
-
-
-    def _send_robot_command(self, command, log_message):
-        """
-        Send a command to the /RobotControl service.
-        """
-        if not self.robot_control_client.wait_for_service(timeout_sec=1.0):
-            self.send_text.emit("[Error] /RobotControl service is not available.")
-            return
-
-        # 서비스 요청 생성 및 전송
-        request = RobotControl.Request()
-        request.command = command
-
-        future = self.robot_control_client.call_async(request)
-        rclpy.spin_until_future_complete(self.node, future)
-
-        # 서비스 응답 확인
-        response = future.result()
-        if response.success:
-            self.send_text.emit(log_message)
-        else:
-            self.send_text.emit(f"[Error] {response.message}")
+        text_to_send = "Robot resume"
+        self.send_text.emit(text_to_send) 
 
     def run_conveyor(self):
         self.run_con_signal.emit(1000000)
-        text_to_send = "[Control] conveyor run"
+        text_to_send = "conveyor run"
         self.send_text.emit(text_to_send) 
         
     def stop_conveyor(self):
         self.stop_con_signal.emit()
-        text_to_send = "[Control] conveyor stop"
+        text_to_send = "conveyor stop"
         self.send_text.emit(text_to_send) 
 
+
+    def send_workspace_email(self, message):
+        user_data = load_user_data()
+        receiver_email = user_data["email"]
+        subject = "Workspace Report"
+
+        if message:
+            send_email(receiver_email, subject, message)
+        else:
+            print("메시지가 비어 있습니다.")
 
 class UINode(Node):
     def __init__(self):
@@ -240,12 +178,12 @@ class UINode(Node):
 
         self.app = QApplication([])
 
-        # USB 상태 서비스 서버 생성
-        self.usb_error_service_server = self.create_service(ConveyorConnection, 'conveyor_connection', self.handle_conveyor_connnection)
-
-
         # ROS2 서비스 클라이언트 생성
         self.conveyor_service_client = self.create_client(ConveyorRun, 'conveyor_control')
+
+        # ROS2Thread 초기화
+        self.ros2_thread = ROS2Thread()
+        self.ros2_thread.start()
 
         # 화면 초기화
         self.login_window = LoginWindow()
@@ -269,44 +207,10 @@ class UINode(Node):
             qos_profile
         )
 
-        self.create_subscription(
-            Image, '/detected_image', self.detected_image_callback, 10
-        )
-        self.create_subscription(
-            Image, '/captured_image', self.captured_image_callback, 10
-        )
-
-
         # QApplication 종료 이벤트 연결
         self.app.aboutToQuit.connect(self.stop_conveyor_on_exit)
 
         self.login_window.show()
-
-
-
-    def handle_conveyor_connnection(self, request, response):
-        """USB 상태 서비스 요청 처리"""
-        message = request.message
-
-        if '[warn]' in message.lower():  # 경고 메시지가 포함된 경우
-            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            full_message = f"{timestamp}: {message}"
-            self.workspace.warnningbox.append(full_message)  # 워닝 박스에 추가
-            self.send_warnning_email(full_message)  # 이메일 전송
-
-        response.success = True
-        response.response = "Conveyor Connection processed successfully."
-        return response
-
-    def send_warnning_email(self, message):
-        user_data = load_user_data()
-        receiver_email = user_data["email"]
-        subject = "Workspace Report"
-
-        if message:
-            send_email(receiver_email, subject, message)
-        else:
-            print("메시지가 비어 있습니다.")
 
     def call_conveyor_service(self, steps):
         """ConveyorRun 서비스 호출"""
@@ -375,40 +279,6 @@ class UINode(Node):
 
         except Exception as e:
             self.get_logger().error(f"Failed to process image: {e}")
-
-    def detected_image_callback(self, msg):
-        """'/detected_image' 토픽에서 이미지를 수신하여 yolostart에 표시."""
-        try:
-            # ROS2 이미지 메시지 -> OpenCV 이미지로 변환
-            cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
-
-            # OpenCV -> QImage로 변환
-            height, width, channel = cv_image.shape
-            bytes_per_line = channel * width
-            qimage = QImage(cv_image.data, width, height, bytes_per_line, QImage.Format_BGR888)
-            pixmap = QPixmap.fromImage(qimage)
-
-            # QLabel 업데이트
-            self.workspace.YOLOstart.setPixmap(pixmap)
-        except Exception as e:
-            self.get_logger().error(f"Failed to process detected image: {e}")
-
-    def captured_image_callback(self, msg):
-        """'/captured_image' 토픽에서 이미지를 수신하여 yoloend에 표시."""
-        try:
-            # ROS2 이미지 메시지 -> OpenCV 이미지로 변환
-            cv_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
-
-            # OpenCV -> QImage로 변환
-            height, width, channel = cv_image.shape
-            bytes_per_line = channel * width
-            qimage = QImage(cv_image.data, width, height, bytes_per_line, QImage.Format_BGR888)
-            pixmap = QPixmap.fromImage(qimage)
-
-            # QLabel 업데이트
-            self.workspace.YOLOsend.setPixmap(pixmap)
-        except Exception as e:
-            self.get_logger().error(f"Failed to process captured image: {e}")
 
 
 def main(args=None):

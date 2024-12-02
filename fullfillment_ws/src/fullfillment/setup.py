@@ -19,7 +19,8 @@ setup(
     entry_points={
         'console_scripts': [
             'UI_node = fullfillment.UI.ui_node:main',
-            'TopView_Camera_node = fullfillment.TopView_Camera.TopView_Camera_node:main',
+            #'TopView_Camera_node = fullfillment.TopView_Camera.TopView_Camera_node:main',
+            'TopView_Camera_node = fullfillment.TopView_Camera.topview:main',
             'Conveyor_node = fullfillment.Conveyor.conveyorcontroller:main'
         ],
     },
