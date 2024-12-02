@@ -17,6 +17,10 @@ find_package(rosidl_typesupport_c REQUIRED)
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/ArucoDetections.msg"
   "srv/ConveyorRun.srv"
+  "srv/ConveyorConnection.srv"
+  "srv/SelectedJob.srv"
+  "srv/BoxDetectandPick.srv"
+  "action/Job.action"
   DEPENDENCIES geometry_msgs
 )
 if(BUILD_TESTING)
